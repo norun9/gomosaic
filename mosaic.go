@@ -38,7 +38,7 @@ func averageColor(img image.Image) [3]float64 {
 
 var TITLEDB map[string][3]float64
 
-func cloneTitleDB() map[string][3]float64 {
+func cloneTilesDB() map[string][3]float64 {
 	db := make(map[string][3]float64)
 	for k, v := range TITLEDB {
 		db[k] = v
