@@ -1,6 +1,7 @@
 package main
 
 import (
+	"fmt"
 	"image"
 	"image/color"
 )
@@ -30,4 +31,9 @@ func averageColor(img image.Image) [3]float64 {
 	}
 	totalPixels := float64(bounds.Max.X * bounds.Max.Y)
 	return [3]float64{r / totalPixels, g / totalPixels, b / totalPixels}
+}
+
+func tilesDB() map[string][3]float64 {
+	fmt.Println("Start populating tiles db...")
+
 }
