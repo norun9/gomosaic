@@ -1,6 +1,23 @@
 package main
 
-import "image"
+import (
+	"image"
+	"image/color"
+)
+
+func resize(in image.Image, newWidth int) image.NRGBA {
+	bounds := in.Bounds()
+	width := bounds.Max.X - bounds.Min.X
+	ratio := width / newWidth
+	out := image.NewNRGBA(image.Rect(bounds.Min.X/ratio, bounds.Min.X/ratio, bounds.Max.X/ratio, bounds.Max.Y/ratio))
+	for y, j := bounds.Min.Y, bounds.Min.Y; y < bounds.Max.Y; y, j = y+ratio, j+1 {
+		for x, i := bounds.Min.X, bounds.Min.X; x < bounds.Max.X; x, i = x+ratio, i+1 {
+			r, g, b, a := in.At(x, y).RGBA()
+			out.SetNRGBA(i, j, color.NRGBA{uint8(r), uint8(g), uint8(b), uint8(a)})
+		}
+	}
+	return *out
+}
 
 func averageColor(img image.Image) [3]float64 {
 	bounds := img.Bounds()
