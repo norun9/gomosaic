@@ -39,7 +39,7 @@ func tilesDB() map[string][3]float64 {
 	fmt.Println("Start populating tiles db...")
 	db := make(map[string][3]float64)
 	files, _ := ioutil.ReadDir("tiles")
-	for _,f := range files {
+	for _, f := range files {
 		name := "tiles/" + f.Name()
 		file, err := os.Open(name)
 		if err == nil {
